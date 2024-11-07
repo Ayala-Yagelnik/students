@@ -1,0 +1,15 @@
+<div>
+
+id : <input type="text" [value]="id">    
+
+firstName : <input type="text" [value]="firstName"> 
+
+age :  <input type="text" [value]="age"> 
+
+adress :  <input type="text" [value]="adress"> 
+@if (!isActive) {
+    date end :  {{dateEnd}}
+}
+</div>
+<br />
+<button class="save" (click)="SaveStudent()">save</button>

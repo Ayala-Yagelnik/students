@@ -1,0 +1,32 @@
+@for(student of arrStudents; track student.id){
+
+    <span>first name:</span> {{student.firsrName}}
+    <span> id:</span> {{student.id}}
+    <span> age:</span>{{student.age}}
+    <span> adress:</span>{{student.adress}}
+    <button class="delete" (click)="delete(student.id)">delete student</button>
+    <button class="edit" (click)="EditStudent(student)">edit</button>
+    @if(student.flagEdit){
+        <app-edit-student 
+        [id]="student.id"
+        [firstName]="student.firsrName"
+        [age]="student.age"
+        [adress]="student.adress"
+        [dateEnd]="student.dateEnd"
+        (childSaveUser)="parentSaveStudent($event)">
+        ></app-edit-student>
+        }
+    <br>
+
+}
+<button class="addStudent" (click)="addStudent()">add student</button>
+@if (newStudent) {
+<app-edit-student
+[id]='0'
+[firstName]='""'
+[age]="0"
+[adress]="''"
+[dateEnd]="''"
+></app-edit-student>
+}
+

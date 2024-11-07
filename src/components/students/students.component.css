@@ -1,0 +1,9 @@
+.delete:hover{
+    background-color: red;
+}
+.edit:hover{
+    background-color: yellow;
+}
+.addStudent:hover{
+    background-color: blue;
+}
