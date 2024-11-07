@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { Student } from '../../models/student';
-import { EditStudentComponent } from '../edit-student/edit-student.component';
+import {  StudentDetailsComponent } from '../student-details/student-details.component';
 
 @Component({
   selector: 'app-student',
   standalone: true,
-  imports: [EditStudentComponent],
+  imports: [StudentDetailsComponent],
   templateUrl:'./students.component.html',
   styleUrl: './students.component.css'  
 })
@@ -30,6 +30,7 @@ student: any;
     this.newStudent = true;
   }
   parentSaveStudent(student : any){
+    this.arrStudents.push(student);
     console.log(student);
   }
 }
