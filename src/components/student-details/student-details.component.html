@@ -7,9 +7,12 @@ firstName : <input type="text" [value]="firstName">
 age :  <input type="text" [value]="age"> 
 
 adress :  <input type="text" [value]="adress"> 
+
+active? :  <input  type="checkbox" [checked]="isActive" > 
+
 @if (!isActive) {
-    date end :  {{dateEnd}}
+    date end :  <input #finishDate type="date" [value]="dateEnd">
 }
 </div>
 <br />
-<button class="save" (click)="SaveStudent()">save</button>
+<button class="save" (click)="SaveStudent(id,firstName,age,adress,isActive)">save</button>

@@ -1,32 +1,80 @@
+<div class="allstudents">
 @for(student of arrStudents; track student.id){
+<div class="stu">
+    <h3> {{student.firsrName}}</h3>
+    <span> id: {{student.id}}</span>
+    <span> age:{{student.age}}</span>
+    <span> adress:{{student.adress}}</span>
+    @if(student.isPay)
+    {
+    <ng-container *ngTemplateOutlet="courses"></ng-container>
 
-    <span>first name:</span> {{student.firsrName}}
-    <span> id:</span> {{student.id}}
-    <span> age:</span>{{student.age}}
-    <span> adress:</span>{{student.adress}}
-    <button class="delete" (click)="delete(student.id)">delete student</button>
-    <button class="edit" (click)="EditStudent(student)">edit</button>
-    @if(student.flagEdit){
-        <app-student-details
-        [id]="student.id"
-        [firstName]="student.firsrName"
-        [age]="student.age"
-        [adress]="student.adress"
-        [dateEnd]="student.dateEnd"
-        (onSaveStudent)="parentSaveStudent($event)">
-        ></app-student-details>
+    }
+
+    <div class="card-footer">
+        <button class="delete" (click)="deleteStudent=true;s=student">delete student</button>
+        <button class="edit" (click)="EditStudent(student)">edit</button>
+        @if(student.flagEdit){
+            <app-infromation-card #child>
+                <div ngProjectAs="title">
+                    <h2>edit student</h2>
+                </div>
+                <div ngProjectAs="body">
+                    <app-student-details [id]="student.id" [firstName]="student.firsrName" [age]="student.age"
+                    [adress]="student.adress" [dateEnd]="student.dateEnd.toDateString()"
+                    (onSaveStudent)="parentSaveStudent($event)">
+                    ></app-student-details>
+                </div>
+                <div ngProjectAs="footer">
+                    <button (click)="student.flagEdit=false">cancel</button>
+                </div>
+            </app-infromation-card>      
         }
+    </div>
     <br>
-
+</div>
 }
+</div>
 <button class="addStudent" (click)="addStudent()">add student</button>
 @if (newStudent) {
-<app-student-details
-[id]='0'
-[firstName]='""'
-[age]="0"
-[adress]="''"
-[dateEnd]="''"
-></app-student-details>
+    <app-infromation-card #child>
+        <div ngProjectAs="title">
+            <h2>add student</h2>
+        </div>
+        <div ngProjectAs="body">
+            <app-student-details [id]='0' [firstName]='""' [age]="0" [adress]="''" [dateEnd]="''"></app-student-details>
+        </div>
+        <div ngProjectAs="footer">
+            <button class="" (click)="parentSaveStudent(s)">ok</button>
+            <button (click)="newStudent=false">cancel</button>
+        </div>
+    </app-infromation-card>
+    
 }
 
+@if (deleteStudent) {
+<app-infromation-card #child>
+    <div ngProjectAs="title">
+        <h2>delete student</h2>
+    </div>
+    <div ngProjectAs="body">
+        <p>Are you sure you want to delete the student?</p>
+    </div>
+    <div ngProjectAs="footer">
+        <button class="delete" (click)="delete(s.id,true)">ok</button>
+        <button (click)="deleteStudent=false">cancel</button>
+    </div>
+</app-infromation-card>
+}
+
+
+<ng-template #courses>
+    <div>
+        <select id="courseDropdown" multiple size="3">
+            <option value="" disabled selected> בחר קורס</option>
+            <option value="1">קורס מבוא לתכנות</option>
+            <option value="2">קורס הנדסת תוכנה</option>
+            <option value="3">קורס גרפיקה</option>
+        </select>
+    </div>
+</ng-template>

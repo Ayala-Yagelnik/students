@@ -1,0 +1,17 @@
+<p>course-details works!</p>
+
+
+<ng-template #myTemplate>
+    @for(course of courses; track course){
+        <!-- <div  style="overflow-y: scroll; height: 100px;"> -->
+            <!-- <h3>{{ course.NameCourse }}</h3>
+            <p>Subject: {{ course.Subject }}</p>
+          </div> -->
+          <!-- <label *ngFor="let opt of options">
+            <input type="checkbox"
+                   [(checklist)]="course.NameCourse"
+                   [checklistValue]="course.Subject" />
+            {{opt.text}}
+          </label> -->
+        }
+</ng-template>

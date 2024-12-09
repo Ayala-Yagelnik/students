@@ -1,0 +1,54 @@
+@for(student of arrStudents; track student.id){
+    <br>
+    -------------------------------
+    <br>
+    {{student.id}}
+    {{student.firstName}}
+    {{student.age}}
+    {{student.active}}
+    @if(student.paying===true)
+    {
+        <ng-container *ngTemplateOutlet="courses"></ng-container> 
+    }
+    <button (click)="deleteSelectFunc(student)" style="margin: 8px;">delete student!!!</button>
+    <button (click)="editStudent(student)" tyle="margin: 8px;">edit student!!!</button>
+    <br/>
+    }
+    @if(flagStudent)
+    {
+    <app-student-details [student]="flagStudent" (childSaveUser)="parentSave($event)"></app-student-details>
+    }
+    
+    
+    <button (click)="addStudent()">add student!!!</button>
+    
+    
+    <p #title style="color:aqua">student details</p>
+    <button (click)="change()">change title!</button>
+    <ng-template #courses>
+        <div>
+        !לבחירה יותר מקורס אחד  shift לחץ
+        </div>
+      <select id="courseDropdown" multiple size="2">
+        <option value="" disabled selected>  בחר קורס</option>
+        <option value="1">קורס מבוא לתכנות</option>
+        <option value="2">קורס הנדסת תוכנה</option>
+        <option value="3">קורס גרפיקה</option>
+      </select>
+    </ng-template>
+    
+    @if(deleteSelect)
+    {
+    <app-infromation-card class="infromationCard">
+    
+    <div ngProjectAs="Body" >
+        <p>⚠️Are you shure that you want to delete?</p>
+    </div>
+    <div ngProjectAs="Footer" >
+        <button (click)="deleteStudent(St.id,true)">ok</button>
+        <button (click)="deleteStudent(St.id,false)">cancel</button>
+    </div>
+    
+    
+    </app-infromation-card>
+    }

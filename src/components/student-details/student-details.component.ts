@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Student } from '../../models/student';
 
 @Component({
   selector: 'app-student-details',
@@ -16,10 +17,10 @@ export class StudentDetailsComponent {
   @Input() dateEnd!: string;
   @Output() onSaveStudent: EventEmitter<any> = new EventEmitter<any>();
 
-  SaveStudent() {
+  SaveStudent(id: number, firstName: string,  age: number,adress:string,isActive: boolean) {
     //שמירה באבא
-    let student = { firstName: this.firstName, id: this.id, age: this.age ,adress:this.adress}  
-    console.log(student); 
+    let student :Student=new Student(id,firstName, age ,adress,isActive,new Date(),false,true)  ;
+     
     this.onSaveStudent.emit(student);
   }
 }

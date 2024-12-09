@@ -5,7 +5,8 @@ export class Student{
     public age:number,
     public adress :string,
     public isActive :boolean=true,
-    public dateEnd:string ,
-    public flagEdit : boolean = false
+    public dateEnd:Date ,
+    public flagEdit : boolean = false,
+    public isPay:boolean=false,
     ){ }
 }
